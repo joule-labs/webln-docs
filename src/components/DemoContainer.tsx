@@ -1,4 +1,5 @@
 import React from 'react';
+import { Icon } from 'antd';
 import Code from './Code';
 import './DemoContainer.less';
 
@@ -13,10 +14,11 @@ const DemoContainer: React.SFC<Props> = ({ code, sourcePath, children }) => (
     <div className="DemoContainer-header">
       <h2 className="DemoContainer-header-title" id="demo">Demo</h2>
       <a
+        className="DemoContainer-header-source"
         href={`https://github.com/wbobeirne/webln-docs/tree/master/src/${sourcePath}`}
         target="_blank"
       >
-        See source on GitHub
+        See source on GitHub <Icon type="github" />
       </a>
     </div>
     <div className="DemoContainer-content">

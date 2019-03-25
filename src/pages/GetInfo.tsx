@@ -11,7 +11,7 @@ export default class Page extends React.Component {
     return (
       <>
         <Markdown source={text} />
-        <DemoContainer>
+        <DemoContainer sourcePath="components/GetInfoDemo.tsx">
           <GetInfoDemo />
         </DemoContainer>
       </>
