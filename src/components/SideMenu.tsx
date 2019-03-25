@@ -5,10 +5,17 @@ import { Link } from 'react-router-dom';
 import { menu, Page, SubMenu } from '../menu';
 import './SideMenu.less';
 
+const allMenuKeys = menu.reduce((prev, item) => {
+  prev.push(item.path);
+  if ((item as SubMenu).pages) {
+    prev = prev.concat((item as SubMenu).pages.map(p => p.path));
+  }
+  return prev;
+}, [] as string[]);
+
 class SideMenu extends React.Component<RouteComponentProps> {
   render() {
     const { location } = this.props;
-    const allMenuKeys = menu.map(item => item.path);
     const selectedKeys = allMenuKeys.filter(key => location.pathname == key);
 
     return (
