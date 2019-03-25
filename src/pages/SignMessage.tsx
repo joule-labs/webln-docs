@@ -4,7 +4,7 @@ import text from './SignMessage.md';
 import DemoContainer from '../components/DemoContainer';
 import SignMessageDemo from '../components/SignMessageDemo';
 
-export default class Page extends React.Component {
+export default class SignMessage extends React.Component {
   render() {
     return (
       <>
