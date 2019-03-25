@@ -1,0 +1,37 @@
+.DemoContainer {
+  margin-top: 3rem;
+
+  &-header {
+    display: flex;
+    align-items: center;
+
+    &-title {
+      flex: 1;
+    }
+
+    &-source {
+      font-size: 0.8rem;
+    }
+  }
+  &-content {
+    display: flex;
+    border: 1px solid rgba(#000, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+
+    &-code {
+      min-width: 360px;
+
+      > pre {
+        margin: 0 !important;
+        height: 100% !important;
+      }
+    }
+
+    &-demo {
+      padding: 1rem;
+      flex: 1;
+      border-left: 1px solid rgba(#000, 0.1);
+    }
+  }
+}

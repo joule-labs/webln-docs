@@ -1,0 +1,35 @@
+.SideMenu {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #e8e8e8;
+
+  &-title {
+    padding: 20px 24px 40px;
+    display: flex;
+    font-size: 28px;
+    line-height: 1;
+    align-items: flex-end;
+
+    &-version {
+      padding-left: 8px;
+      padding-bottom: 2px;
+      font-size: 12px;
+    }
+  }
+
+  &-menu {
+    flex: 1;
+  }
+
+  &-footer {
+    padding: 20px;
+    text-align: center;
+    color: rgba(#000, 0.5);
+  }
+
+  // Antd overrides
+  .ant-menu-inline {
+    border: none;
+  }
+}

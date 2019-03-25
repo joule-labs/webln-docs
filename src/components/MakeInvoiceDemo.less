@@ -1,0 +1,48 @@
+.MakeInvoiceDemo {
+  &-invoice {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    &-qr {
+      width: 12rem;
+      height: 12rem;
+      padding: 0.75rem;
+      margin-right: 1rem;
+      border-radius: 4px;
+      border: 1px solid #e8e8e8;
+
+      canvas {
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+
+    &-pr {
+      flex: 1;
+
+      .ant-form-item {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}
+
+.PaymentRequestTable {
+  margin-bottom: 2rem;
+
+  td {
+    overflow-wrap: break-word;
+  }
+
+  td:first-child {
+    min-width: 150px;
+  }
+
+  .ant-table-row em {
+    opacity: 0.5;
+    font-size: 0.8rem;
+  }
+}
