@@ -13,7 +13,7 @@ You may be interested in using WebLN if you...
 Some WebLN client providers include
 
 * [Joule](https://lightningjoule.com) - a WebLN-enabled browser extension
-* [BlueWallet](https://bluewallet.io/) - a mobile app with a WebLN browser
+* [BlueWallet](https://bluewallet.io/) - a mobile wallet with a WebLN browser
 
 Some applications that use WebLN on the web include
 
