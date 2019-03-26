@@ -20,11 +20,14 @@
     max-width: 1280px;
   }
 
-  @media @sm-query {
-    padding-top: @mobile-header-height;
-
+  @media @md-query {
     &-sidebar {
       display: none;
+    }
+
+    &-content {
+      padding-top: @mobile-header-height + 1rem;
+      padding-bottom: 2rem;
     }
   }
 }

@@ -1,5 +1,6 @@
 import Introduction from './pages/Introduction';
 import GettingStarted from './pages/GettingStarted';
+import UXBestPractices from './pages/UXBestPractices';
 import RequestProvider from './pages/RequestProvider';
 import GetInfo from './pages/GetInfo';
 import SendPayment from './pages/SendPayment';
@@ -42,6 +43,11 @@ export const pages: Array<Page> = [{
   section: 'overview',
   component: GettingStarted,
 }, {
+  path: '/ux-best-practices',
+  name: 'UX Best Practices',
+  section: 'overview',
+  component: UXBestPractices,
+}, {
   path: '/api/request-provider',
   name: 'requestProvider',
   section: 'client-api',
@@ -72,7 +78,7 @@ export const pages: Array<Page> = [{
   section: 'api',
   component: VerifyMessage,
 }, {
-  path: '/errors',
+  path: '/api/errors',
   name: 'Errors',
   section: 'api',
   component: Errors
