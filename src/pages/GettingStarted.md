@@ -4,14 +4,19 @@ To start using WebLN, you'll need access to the client library. You can either i
 
 ## Installation
 
-### EITHER Install with Package Manager
+### Install with Package Manager (Preferred)
 
 Install the `webln` library using your package manager of choice:
 
 * npm: `npm install --save webln`
 * yarn: `yarn add webln`
 
-### OR Include Script
+And import it in your project wherever you need it:
+```ts
+import { requestProvider } from 'webln';
+```
+
+### Include Script (Alternative)
 
 Alternatively you can include a script in your page that will load the library. **Be sure to keep the integrity check to prevent malicious Javascript from loading.**
 

@@ -46,11 +46,11 @@ class MyWebLNProvider {
 ## Error Reference
 
 | Class name | Description |
-|--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| MissingProviderError   | Thrown when `requestProvider` doesn't find a provider. This is a good one to catch to direct users to install an extension or browser that supports WebLN, especially if you have a favorite. |
-| RejectionError         | Thrown by providers when a user indicates that they don't want to complete a request from the application.                                                                                    |
-| ConnectionError        | Thrown by providers when the node the provider use could not be reached for connection reasons (Either the user's network is down, or the node's network is down.)                            |
-| UnsupportedMethodError | Providers that only partially implement the WebLN spec can throw this error for methods they don't support.                                                                                   |
-| RoutingError           | Thrown by providers when a node couldn't be routed to. This is a good time to prompt users to add your node as a peer, or open a channel.                                                     |
-| InvalidDataError       | Thrown by providers if some data passed by the application is incorrect, such as a malformed BOLT-11 payment request.                                                                         |
-| InternalError          | A catch-all for errors that happened in the provider that the app can't really do anything about.                                                                                             |
+|------------|-------------|
+| **MissingProviderError**   | Thrown when `requestProvider` doesn't find a provider. This is a good one to catch to direct users to install an extension or browser that supports WebLN, especially if you have a favorite. |
+| **RejectionError**         | Thrown by providers when a user indicates that they don't want to complete a request from the application.                                                                                    |
+| **ConnectionError**        | Thrown by providers when the node the provider use could not be reached for connection reasons (Either the user's network is down, or the node's network is down.)                            |
+| **UnsupportedMethodError** | Providers that only partially implement the WebLN spec can throw this error for methods they don't support.                                                                                   |
+| **RoutingError**           | Thrown by providers when a node couldn't be routed to. This is a good time to prompt users to add your node as a peer, or open a channel.                                                     |
+| **InvalidDataError**       | Thrown by providers if some data passed by the application is incorrect, such as a malformed BOLT-11 payment request.                                                                         |
+| **InternalError**          | A catch-all for errors that happened in the provider that the app can't really do anything about.                                                                                             |
