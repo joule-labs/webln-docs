@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form, Input, Button, Alert, Table } from 'antd';
+import { Form, Input, Button, Alert, Table, Radio } from 'antd';
+import { RadioChangeEvent } from 'antd/lib/radio';
 import { requestProvider, RequestInvoiceResponse } from 'webln';
 import QRCode from 'qrcode.react';
 import { decode, FallbackAddress } from 'bolt11';
@@ -19,6 +20,7 @@ export interface FormState {
 
 interface State {
   form: FormState;
+  amountType: string;
   invoice: RequestInvoiceResponse | null;
   error: Error | null;
   isLoading: boolean;
@@ -33,13 +35,14 @@ export default class MakeInvoiceDemo extends React.Component<Props, State> {
       maximumAmount: '',
       defaultMemo: '',
     },
+    amountType: 'dynamic',
     invoice: null,
     error: null,
     isLoading: false,
   };
 
   render() {
-    const { form, invoice, error, isLoading } = this.state;
+    const { form, amountType, invoice, error, isLoading } = this.state;
 
     let content;
     if (invoice) {
@@ -63,8 +66,9 @@ export default class MakeInvoiceDemo extends React.Component<Props, State> {
         </div>
       );
     } else {
-      content = (
-        <Form layout="vertical" onSubmit={this.makeInvoice}>
+      let amountInputs;
+      if (amountType === 'fixed') {
+        amountInputs = (
           <Form.Item label="Amount">
             <Input
               name="amount"
@@ -73,30 +77,51 @@ export default class MakeInvoiceDemo extends React.Component<Props, State> {
               onChange={this.handleInput}
             />
           </Form.Item>
-          <Form.Item label="Default">
-            <Input
-              name="defaultAmount"
-              type="number"
-              value={form.defaultAmount}
-              onChange={this.handleInput}
-            />
-          </Form.Item>
-          <Form.Item label="Min">
-            <Input
-              name="minimumAmount"
-              type="number"
-              value={form.minimumAmount}
-              onChange={this.handleInput}
-            />
-          </Form.Item>
-          <Form.Item label="Max">
-            <Input
-              name="maximumAmount"
-              type="number"
-              value={form.maximumAmount}
-              onChange={this.handleInput}
-            />
-          </Form.Item>
+        );
+      } else {
+        amountInputs = (
+          <>
+            <Form.Item label="Default">
+              <Input
+                name="defaultAmount"
+                type="number"
+                value={form.defaultAmount}
+                onChange={this.handleInput}
+              />
+            </Form.Item>
+            <Form.Item label="Min">
+              <Input
+                name="minimumAmount"
+                type="number"
+                value={form.minimumAmount}
+                onChange={this.handleInput}
+              />
+            </Form.Item>
+            <Form.Item label="Max">
+              <Input
+                name="maximumAmount"
+                type="number"
+                value={form.maximumAmount}
+                onChange={this.handleInput}
+              />
+            </Form.Item>
+          </>
+        );
+      }
+      content = (
+        <Form className="MakeInvoiceDemo-form" layout="vertical" onSubmit={this.makeInvoice}>
+          <div className="MakeInvoiceDemo-form-amounts">
+            <div className="MakeInvoiceDemo-form-amounts-toggle">
+              <Radio.Group
+                value={amountType}
+                onChange={this.handleChangeAmountType}
+              >
+                <Radio.Button value="dynamic">Dynamic values</Radio.Button>
+                <Radio.Button value="fixed">Fixed value</Radio.Button>
+              </Radio.Group>
+            </div>
+            {amountInputs}
+          </div>
           <Form.Item label="Default memo">
             <Input.TextArea
               name="defaultMemo"
@@ -137,6 +162,24 @@ export default class MakeInvoiceDemo extends React.Component<Props, State> {
       [ev.target.name]: ev.target.value,
     };
     this.setState({ form }, () => {
+      this.props.onChangeForm(this.state.form);
+    });
+  };
+
+  private handleChangeAmountType = (ev: RadioChangeEvent) => {
+    const { value } = ev.target;
+    const form = { ...this.state.form };
+    if (value === 'fixed') {
+      form.defaultAmount = '';
+      form.minimumAmount = '';
+      form.maximumAmount = '';
+    } else {
+      form.amount = '';
+    }
+    this.setState({
+      form,
+      amountType: value,
+    }, () => {
       this.props.onChangeForm(this.state.form);
     });
   };
