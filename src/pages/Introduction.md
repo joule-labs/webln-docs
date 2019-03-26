@@ -1,6 +1,6 @@
 # Introduction
 
-WebLN is a library for applications, and a specification for client providers to facilitate  communication between apps and user's lightning nodes in a secure way. It provides a programatic and permissioned interface to let applications get users to send payments, generate invoices to receive payments, and much more. This documentation covers both how to use WebLN in your Lightning-driven applications, but also how to implement a provider.
+WebLN is a library and set of specifications for lightning apps and client providers to facilitate communication between apps and users' lightning nodes in a secure way. It provides a programmatic, permissioned interface for letting applications ask users to send payments, generate invoices to receive payments, and much more. This documentation covers both how to use WebLN in your Lightning-driven applications, but also how to implement a provider.
 
 You may be interested in using WebLN if you...
 
@@ -21,7 +21,6 @@ Some applications that use WebLN on the web include
 * [Bitrefill](https://www.bitrefill.com/) - Purchase gift cards with Bitcoin
 * [Lightning Chess](https://koalastud.io) - Wager satoshis on chess games with friends
 * [Tippin.me](https://tippin.me) - A custodial Lightning tipping service for Twitter
-* And many more!
 
 ## For App Developers
 
