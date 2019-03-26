@@ -2,21 +2,19 @@ import React from 'react';
 import { Menu } from 'antd';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
-import { menu, Page, SubMenu } from '../menu';
+import { pages, sections } from '../menu';
 import './SideMenu.less';
 
-const allMenuKeys = menu.reduce((prev, item) => {
-  prev.push(item.path);
-  if ((item as SubMenu).pages) {
-    prev = prev.concat((item as SubMenu).pages.map(p => p.path));
-  }
-  return prev;
-}, [] as string[]);
+const allPageKeys = pages.map(p => p.path);
+const sectionsWithPages = sections.map(s => ({
+  ...s,
+  pages: pages.filter(p => p.section === s.id),
+}));
 
 class SideMenu extends React.Component<RouteComponentProps> {
   render() {
     const { location } = this.props;
-    const selectedKeys = allMenuKeys.filter(key => location.pathname == key);
+    const selectedKeys = allPageKeys.filter(key => location.pathname == key);
 
     return (
       <div className="SideMenu">
@@ -27,30 +25,33 @@ class SideMenu extends React.Component<RouteComponentProps> {
           </div>
         </div>
         <div className="SideMenu-menu">
-          <Menu mode="inline" defaultOpenKeys={allMenuKeys} selectedKeys={selectedKeys}>
-            {menu.map(item => this.renderMenuItem(item))}
+          <Menu mode="inline" selectedKeys={selectedKeys}>
+            {sectionsWithPages.map(s => (
+              <Menu.ItemGroup title={s.name}>
+                {s.pages.map(p => (
+                  <Menu.Item key={p.path}>
+                    <Link to={p.path}>{p.name}</Link>
+                  </Menu.Item>
+                ))}
+                {!s.pages.length && (
+                  <div className="SideMenu-menu-empty">Coming soon!</div>
+                )}
+              </Menu.ItemGroup>
+            ))}
           </Menu>
         </div>
         <div className="SideMenu-footer">
-          WebLN is dope
+          <a href="https://github.com/wbobeirne/webln" target="_blank" rel="noopener nofollow">
+            GitHub
+          </a>
+          <a href="https://twitter.com/lightningjoule" target="_blank" rel="noopener nofollow">
+            Twitter
+          </a>
+          <a href="https://lightningjoule.com" target="_blank" rel="noopener nofollow">
+            Powered by Joule
+          </a>
         </div>
       </div>
-    );
-  }
-
-  private renderMenuItem(item: Page | SubMenu) {
-    if ((item as SubMenu).pages) {
-      return (
-        <Menu.SubMenu key={item.path} title={item.name}>
-          {(item as SubMenu).pages.map(subItem => this.renderMenuItem(subItem))}
-        </Menu.SubMenu>
-      );
-    }
-
-    return (
-      <Menu.Item key={item.path}>
-        <Link to={item.path}>{item.name}</Link>
-      </Menu.Item>
     );
   }
 }

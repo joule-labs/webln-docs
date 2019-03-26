@@ -1,3 +1,5 @@
+@import '../style/variables.less';
+
 .SideMenu {
   min-height: 100vh;
   display: flex;
@@ -20,16 +22,55 @@
 
   &-menu {
     flex: 1;
+
+    &-empty {
+      margin-left: 1.5rem;
+      margin-right: 1.5rem;
+      padding: 2rem 1.5rem;
+      color: rgba(#000, 0.3);
+      border: 1px dashed rgba(#000, 0.1);
+      border-radius: 4px;
+      text-align: center;
+    }
   }
 
   &-footer {
     padding: 20px;
     text-align: center;
     color: rgba(#000, 0.5);
+
+    a {
+      padding: 0.4rem 0.6rem;
+      color: rgba(#000, 0.65);
+      opacity: 0.5;
+      font-size: 0.7rem;
+
+      &:hover {
+        color: @primary-color;
+        opacity: 1;
+      }
+    }
   }
 
   // Antd overrides
   .ant-menu-inline {
     border: none;
+  }
+
+  .ant-menu-item-group-title,
+  .ant-menu-item-group-list .ant-menu-item {
+    padding-left: 1.5rem;
+  }
+
+  .ant-menu-item-group {
+    margin-bottom: 2rem;
+  }
+
+  .ant-menu-item-group-title {
+    font-weight: bold;
+    font-size: 0.7rem;
+    letter-spacing: 0.08rem;
+    color: rgba(#000, 0.5);
+    text-transform: uppercase;
   }
 }

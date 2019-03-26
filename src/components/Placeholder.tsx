@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon } from 'antd';
+import './Placeholder.less';
 
 interface Props {
   children: React.ReactNode;

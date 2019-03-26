@@ -8,7 +8,7 @@ export default class MakeInvoice extends React.Component {
     return (
       <>
         <Markdown source={text} />
-        <Placeholder>There's no demo for this method yet</Placeholder>
+        <Placeholder>There's no demo for this method yet. Check back soon!</Placeholder>
       </>
     );
   }
