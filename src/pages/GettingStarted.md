@@ -2,14 +2,16 @@
 
 To start using WebLN, you'll need access to the client library. You can either install the package, or include a script. **It's highly recommended that you install the package and bundle it rather than relying on an external script**.
 
-## Install with Package Manager
+## Installation
+
+### EITHER Install with Package Manager
 
 Install the `webln` library using your package manager of choice:
 
 * npm: `npm install --save webln`
 * yarn: `yarn add webln`
 
-## Include Script
+### OR Include Script
 
 Alternatively you can include a script in your page that will load the library. **Be sure to keep the integrity check to prevent malicious Javascript from loading.**
 
@@ -34,6 +36,6 @@ would instead look like this:
 WebLN.requestProvider(/* ... */);
 ```
 
-## Wait For Document Ready
+## You're All Set
 
-To ensure that the user's client has adequate time to inject WebLN, it's recommended that all of your code be executed once the document is ready. In a normal javascript environment, this can be done by waiting on the document `DOMContentReady` listener. In a React environment, this is once your components have mounted.
+From here, check out how to use [`requestProvider`](/api/request-provider) and the provider API methods. Make sure you take a look at the source code for each method's demo to fully understand it.

@@ -1,6 +1,6 @@
 import Introduction from './pages/Introduction';
 import GettingStarted from './pages/GettingStarted';
-import WeblnOverview from './pages/WeblnOverview';
+import RequestProvider from './pages/RequestProvider';
 import GetInfo from './pages/GetInfo';
 import SendPayment from './pages/SendPayment';
 import MakeInvoice from './pages/MakeInvoice';
@@ -32,9 +32,9 @@ export const menu: Array<Page | SubMenu> = [{
   path: '/api',
   name: 'API Reference',
   pages: [{
-    path: '/api/overview',
-    name: 'webln & requestProvider',
-    component: WeblnOverview,
+    path: '/api/request-provider',
+    name: 'requestProvider',
+    component: RequestProvider,
   }, {
     path: '/api/get-info',
     name: 'webln.getInfo',
