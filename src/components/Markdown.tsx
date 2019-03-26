@@ -19,6 +19,25 @@ const renderers: { [key: string]: Renderer<any> } = {
       return <Link to={props.href}>{props.children}</Link>;
     }
   },
+  // Inherit ant design's styles for tables
+  table: props => (
+    <div className="ant-table ant-table-default">
+      <div className="ant-table-content">
+        <div className="ant-table-body">
+          <table {...props} />
+        </div>
+      </div>
+    </div>
+  ),
+  tableHead: props => (
+    <thead {...props} className="ant-table-thead" />
+  ),
+  tableBody: props => (
+    <tbody {...props} className="ant-table-tbody" />
+  ),
+  tableRow: props => (
+    <tr {...props} className="ant-table-row" />
+  ),
 }
 
 const Markdown: React.SFC<Props> = ({ source }) => (

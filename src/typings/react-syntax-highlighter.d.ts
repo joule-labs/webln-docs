@@ -3,5 +3,6 @@ declare module 'react-syntax-highlighter' {
 }
 
 declare module 'react-syntax-highlighter/dist/styles/prism/*' {
-  export const style: any;
+  const style: any;
+  export default style;
 }
