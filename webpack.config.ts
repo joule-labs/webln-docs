@@ -4,11 +4,13 @@ const webpack = require('webpack');
 // webpack plugins
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
 const src = path.join(__dirname, 'src');
 const dist = path.join(__dirname, 'dist');
+const staticDir = path.join(__dirname, 'static');
 
 const typescriptLoader = {
   test: /\.tsx?$/,
@@ -90,5 +92,9 @@ module.exports = {
       template: `${src}/index.html`,
       inject: true,
     }),
+    new CopyPlugin([{
+      from: staticDir,
+      to: dist,
+    }]),
   ],
 };
