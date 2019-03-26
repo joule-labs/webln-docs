@@ -50,7 +50,7 @@ export const pages: Array<Page> = [{
 }, {
   path: '/api/request-provider',
   name: 'requestProvider',
-  section: 'client-api',
+  section: 'api',
   component: RequestProvider,
 }, {
   path: '/api/get-info',
