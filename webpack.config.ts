@@ -95,6 +95,9 @@ module.exports = {
     new CopyPlugin([{
       from: staticDir,
       to: dist,
+    }, {
+      from: path.join(__dirname, 'CNAME'),
+      to: dist,
     }]),
   ],
 };
