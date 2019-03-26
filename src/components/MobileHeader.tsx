@@ -30,6 +30,7 @@ class MobileHeader extends React.Component<RouteComponentProps, State> {
 
   render() {
     const { isDrawerOpen } = this.state;
+    console.log(this.props.location);
 
     return (
       <div className="MobileHeader">

@@ -33,7 +33,7 @@ export interface Page {
 }
 
 export const pages: Array<Page> = [{
-  path: '/introduction',
+  path: '/',
   name: 'Introduction',
   section: 'overview',
   component: Introduction,
