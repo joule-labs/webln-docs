@@ -40,6 +40,10 @@
         position: absolute;
         left: 50%;
         top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         transform: translate(-50%, -50%);
       }
     }
@@ -49,12 +53,17 @@
 .PaymentRequestTable {
   margin-bottom: 2rem;
 
-  td {
-    overflow-wrap: break-word;
+  table {
+    table-layout: fixed;
+    width: 100%;
   }
 
-  td:first-child {
-    min-width: 150px;
+  colgroup col:first-child {
+    width: 160px;
+  }
+
+  td {
+    overflow-wrap: break-word;
   }
 
   .ant-table-row em {

@@ -1,0 +1,48 @@
+@import '../style/variables.less';
+
+.MobileHeader {
+  display: none;
+  position: fixed;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: @mobile-header-height;
+  padding: 0 1rem;
+  background: #FFF;
+  box-shadow: 0 1px rgba(0, 0, 0, 0.1);
+
+  &-open {
+    font-size: 1.3rem;
+    margin-right: 1rem;
+  }
+
+  &-title {
+    display: flex;
+    font-size: 1.6rem;
+    line-height: 1;
+    align-items: flex-end;
+
+    &-version {
+      padding-left: 8px;
+      padding-bottom: 2px;
+      font-size: 0.7rem;
+    }
+  }
+  
+  &-drawer {
+    // SideMenu overrides
+    .SideMenu {
+      border-right: none;
+    }
+    
+    // Antd overrides
+    .ant-drawer-body {
+      padding: 0;
+    }
+  }
+
+  @media @sm-query {
+    display: flex;
+  }
+}

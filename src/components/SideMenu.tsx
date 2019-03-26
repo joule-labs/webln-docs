@@ -3,6 +3,7 @@ import { Menu } from 'antd';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import { pages, sections } from '../menu';
+import { VERSION } from '../constants';
 import './SideMenu.less';
 
 const allPageKeys = pages.map(p => p.path);
@@ -21,13 +22,13 @@ class SideMenu extends React.Component<RouteComponentProps> {
         <div className="SideMenu-title">
           WebLN
           <div className="SideMenu-title-version">
-            v0.2.0
+            v{VERSION}
           </div>
         </div>
         <div className="SideMenu-menu">
           <Menu mode="inline" selectedKeys={selectedKeys}>
             {sectionsWithPages.map(s => (
-              <Menu.ItemGroup title={s.name}>
+              <Menu.ItemGroup title={s.name} key={s.id}>
                 {s.pages.map(p => (
                   <Menu.Item key={p.path}>
                     <Link to={p.path}>{p.name}</Link>

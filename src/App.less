@@ -1,3 +1,5 @@
+@import './style/variables.less';
+
 .App {
   display: flex;
   justify-content: center;
@@ -16,5 +18,13 @@
     flex: 1;
     padding: 1rem 2rem 3rem;
     max-width: 1280px;
+  }
+
+  @media @sm-query {
+    padding-top: @mobile-header-height;
+
+    &-sidebar {
+      display: none;
+    }
   }
 }

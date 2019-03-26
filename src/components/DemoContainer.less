@@ -1,3 +1,5 @@
+@import '../style/variables.less';
+
 .DemoContainer {
   margin-top: 3rem;
 
@@ -13,6 +15,7 @@
       font-size: 0.8rem;
     }
   }
+
   &-content {
     display: flex;
     border: 1px solid rgba(#000, 0.1);
@@ -32,6 +35,21 @@
     &-demo {
       padding: 1rem;
       flex: 1;
+      overflow: hidden;
+    }
+
+    @media @sm-query {
+      flex-direction: column-reverse;
+
+      &-code {
+        min-width: 0;
+        border-right: none;
+        border-top: 1px solid rgba(#000, 0.1);
+
+        > pre {
+          min-height: 60px !important;
+        }
+      }
     }
   }
 }

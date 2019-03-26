@@ -7,8 +7,6 @@ interface Props {
   language: string;
 }
 
-console.log(style);
-
 const Code: React.SFC<Props> = ({ language, children }) => (
   <SyntaxHighlighter language={language} style={style}>
     {children}
