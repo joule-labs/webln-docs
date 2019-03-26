@@ -67,7 +67,7 @@ module.exports = {
   output: {
     path: dist,
     filename: 'script.js',
-    publicPath: '/',
+    publicPath: '.',
     chunkFilename: isDev ? '[name].chunk.js' : '[name].[chunkhash:8].chunk.js',
   },
   module: {

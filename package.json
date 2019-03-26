@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server",
-    "build": "NODE_ENV=production webpack"
+    "build": "NODE_ENV=production webpack",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "@babel/core": "7.4.0",
@@ -44,6 +45,7 @@
     "@types/react-router": "4.4.5",
     "@types/react-router-dom": "4.3.1",
     "@types/webpack": "4.4.26",
+    "gh-pages": "2.0.1",
     "webpack-dev-server": "3.2.1"
   }
 }
