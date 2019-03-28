@@ -8,7 +8,7 @@ Request that the user create an invoice for use by the app. This will return a [
 
 Note that these constraints are enforced by the client's provider, and therefore should not be completely trusted. If you want to check the fields that come back, or otherwise use the data encoded in the invoice, you'll want to use a library to decode it such as the [bolt11 npm package](https://www.npmjs.com/package/bolt11).
 
-Amounts are denominated in satoshis. For large amounts, it's recommended you use a big number library such as [bn.js](https://www.npmjs.com/package/bn.js) as Javascript only supports 32 bit integers.
+Amounts are denominated in satoshis. For large amounts, it's recommended you use a big number library such as [bn.js](https://www.npmjs.com/package/bn.js) as Javascript only supports 53 bit integers.
 
 ### Parameters
 
