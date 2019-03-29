@@ -1,6 +1,6 @@
 # WebLN Docs
 
-This houses the documentation for [WebLN](https://github.com/wbobeirne/webln/issues), a spec for Lightning web apps to interface with Lightning clients. This site is a custom simple React app, hosted using Github  Pages.
+This houses the documentation for [WebLN](https://github.com/wbobeirne/webln), a spec for Lightning web apps to interface with Lightning clients. This site is a custom simple React app, hosted using Github  Pages.
 
 ## Requirements
 
