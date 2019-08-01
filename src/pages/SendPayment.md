@@ -12,10 +12,6 @@ function sendPayment(paymentRequest: string): Promise<SendPaymentResponse>;
 
 ```ts
 interface SendPaymentResponse {
-  node: {
-    alias: string;
-    pubkey: string;
-    color?: string;
-  };
+  preimage: string;
 }
 ```
