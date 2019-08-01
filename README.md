@@ -28,7 +28,7 @@ yarn dev
 ```sh
 npm run build
 # OR #
-yarn dev
+yarn build
 ```
 
 ### Deploy to GitHub Pages
