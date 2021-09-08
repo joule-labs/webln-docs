@@ -196,7 +196,7 @@ export default class MakeInvoiceDemo extends React.Component<Props, State> {
       const webln = await requestProvider();
       const invoice = await webln.makeInvoice(this.state.form);
       this.setState({ invoice });
-    } catch(error) {
+    } catch(error: any) {
       this.setState({ error });
     }
     this.setState({ isLoading: false });
@@ -241,9 +241,6 @@ const PaymentRequestTable: React.SFC<PRTableProps> = ({ paymentRequest }) => {
     key: 'value',
   }];
   const data: any = [{
-    key: 'Coin',
-    value: decoded.coinType,
-  }, {
     key: 'Amount',
     value: `${decoded.satoshis} sats`,
   }, {
