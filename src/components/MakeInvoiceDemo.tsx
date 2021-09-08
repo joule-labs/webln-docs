@@ -196,7 +196,7 @@ export default class MakeInvoiceDemo extends React.Component<Props, State> {
       const webln = await requestProvider();
       const invoice = await webln.makeInvoice(this.state.form);
       this.setState({ invoice });
-    } catch(error: any) {
+    } catch(error) {
       this.setState({ error });
     }
     this.setState({ isLoading: false });
