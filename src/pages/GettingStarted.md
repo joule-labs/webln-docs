@@ -41,6 +41,10 @@ would instead look like this:
 WebLN.requestProvider(/* ... */);
 ```
 
+### Available libraries for a quick start
+* [Pay with LN](https://github.com/alepop/pay-with-ln) - WebLN enabled payment button
+* [React WebLN Fallback](https://github.com/joule-labs/react-webln-fallback) - React components and standalone library for handling WebLN calls without WebLN
+
 ## You're All Set
 
 From here, check out how to use [`requestProvider`](/api/request-provider) and the provider API methods. Make sure you take a look at the source code for each method's demo to fully understand it.
