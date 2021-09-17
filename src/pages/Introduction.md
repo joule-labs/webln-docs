@@ -36,10 +36,6 @@ Some demos to see what you can do with WebLN
 
 Jump into the [Getting Started](/getting-started) section to see how to install and use WebLN in your app.
 
-Available libraries for a quick start
-* [Pay with LN](https://github.com/alepop/pay-with-ln) - WebLN enabled payment button
-* [React WebLN Fallback](https://github.com/joule-labs/react-webln-fallback) - React components and standalone library for handling WebLN calls without WebLN
-
 ## For Provider Developers
 
 Jump into the [WebLN Provider](/webln-provider) docs to see what a provider is, and the functions it should implement.
