@@ -26,9 +26,19 @@ Some applications that use WebLN on the web include
 * [Sparkshot](https://sparkshot.io/) - Platform for artists to monetize the release of their art.
 * [Stacker News](https://stacker.news/) - A reddit like platform with Lightning payments for upvotes of posts
 
+Some demos to see what you can do with WebLN
+
+* [Sneak Peek of the Lightning Browser Extension & WebLN paywall](https://www.youtube.com/watch?v=3gGskYltqi4)
+* [Wordpress and the power of WebLN and LNURL](https://www.youtube.com/watch?v=8uSIurAn1WY)
+* [WebLN Demo](https://github.com/wbobeirne/webln-demo) - Demos for all WebLN interactions.
+
 ## For App Developers
 
 Jump into the [Getting Started](/getting-started) section to see how to install and use WebLN in your app.
+
+Available libraries for a quick start
+* [Pay with LN](https://github.com/alepop/pay-with-ln) - WebLN enabled payment button
+* [React WebLN Fallback](https://github.com/joule-labs/react-webln-fallback) - React components and standalone library for handling WebLN calls without WebLN
 
 ## For Provider Developers
 
