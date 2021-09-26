@@ -13,7 +13,7 @@ You may be interested in using WebLN if you...
 Some WebLN client providers include
 
 * [Joule](https://lightningjoule.com) - a WebLN-enabled browser extension that uses your own node
-* [Alby](https://github.com/getAlby/lightning-browser-extension) - a general and versatile open-source browser extension for the Bitcoin Lightning Network
+* [Alby](https://github.com/getAlby/lightning-browser-extension) - a versatile open-source browser extension for the Bitcoin Lightning Network
 * [BlueWallet](https://bluewallet.io/) - a mobile wallet with a WebLN browser
 * [kwh](https://github.com/fiatjaf/kwh/) - A firefox/chrome extension for WebLN to your c-lightning node
 * [Blixt Wallet](https://blixtwallet.github.io/) - a non-custodial open-source Lightning Wallet with a WebLN browser
