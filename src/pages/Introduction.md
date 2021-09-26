@@ -13,16 +13,23 @@ You may be interested in using WebLN if you...
 Some WebLN client providers include
 
 * [Joule](https://lightningjoule.com) - a WebLN-enabled browser extension that uses your own node
+* [Alby](https://github.com/getAlby/lightning-browser-extension) - a versatile open-source browser extension for the Bitcoin Lightning Network
 * [BlueWallet](https://bluewallet.io/) - a mobile wallet with a WebLN browser
-* [Bitlum](https://bitlum.io/) - a custodial WebLN-enabled browser extension
 * [kwh](https://github.com/fiatjaf/kwh/) - A firefox/chrome extension for WebLN to your c-lightning node
+* [Blixt Wallet](https://blixtwallet.github.io/) - a non-custodial open-source Lightning Wallet with a WebLN browser
 
 Some applications that use WebLN on the web include
 
-* [Lightning Spin](https://lightningspin.com) - A roulette-style game where you can bet and win Satoshis
 * [Bitrefill](https://www.bitrefill.com/) - Purchase gift cards with Bitcoin
-* [Lightning Chess](https://koalastud.io) - Wager satoshis on chess games with friends
-* [Tippin.me](https://tippin.me) - A custodial Lightning tipping service for Twitter
+* [Lightning Spin](https://lightningspin.com) - A roulette-style game where you can bet and win Satoshis
+* [LNMarkets](https://lnmarkets.com/) - LN-powered Bitcoin derivatives trading platform
+* [Sparkshot](https://sparkshot.io/) - Platform for artists to monetize the release of their art.
+* [Stacker News](https://stacker.news/) - A reddit like platform with Lightning payments for upvotes of posts
+
+Some demos to see what you can do with WebLN
+
+* [Sneak Peek of the Lightning Browser Extension & WebLN paywall](https://www.youtube.com/watch?v=3gGskYltqi4)
+* [Wordpress and the power of WebLN and LNURL](https://www.youtube.com/watch?v=8uSIurAn1WY)
 
 ## For App Developers
 
