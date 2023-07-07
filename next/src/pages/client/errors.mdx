@@ -1,0 +1,57 @@
+# Errors
+
+WebLN provides some common error types to try to formalize error handling across applications. You can import them from the library, and throw them in like so:
+
+```ts
+import { UnsupportedMethodError } from "webln";
+```
+
+## Handling Errors as an App
+
+If you want to handle specific errors, rather than just doing a one-size-fits-all, you'll need to import the error and check it against the thrown error. Here's an example:
+
+```ts
+import { requestProvider, MissingProviderError } from "webln";
+
+try {
+  const webln = requestProvider();
+  /* do whatever webln function */
+} catch (err) {
+  // Default error message
+  let message = `Something went wrong: ${err.message}`;
+  // If they didn't have a provider, point them to Joule
+  if (err.constructor === MissingProviderError) {
+    message = "Check out https://lightningjoule.com to get a WebLN provider";
+  }
+  // Show the error (though you should probably use something better than alert!)
+  alert(message);
+}
+```
+
+## Throwing Errors as a Provider
+
+As a WebLN provider, you should try to provide accurate errors whenever possible. This will allow apps to provide users with a way to handle their error, tailored to the use case. Simply import and throw one of the errors wherever relevant. Here's an example:
+
+```ts
+import { UnsupportedMethodError } from "webln";
+
+class MyWebLNProvider {
+  signMessage() {
+    throw new UnsupportedMethodError(
+      "Message signing not supported yet, sorry!"
+    );
+  }
+}
+```
+
+## Error Reference
+
+| Class name                 | Description                                                                                                                                                                                   |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **MissingProviderError**   | Thrown when `requestProvider` doesn't find a provider. This is a good one to catch to direct users to install an extension or browser that supports WebLN, especially if you have a favorite. |
+| **RejectionError**         | Thrown by providers when a user indicates that they don't want to complete a request from the application.                                                                                    |
+| **ConnectionError**        | Thrown by providers when the node the provider use could not be reached for connection reasons (Either the user's network is down, or the node's network is down.)                            |
+| **UnsupportedMethodError** | Providers that only partially implement the WebLN spec can throw this error for methods they don't support.                                                                                   |
+| **RoutingError**           | Thrown by providers when a node couldn't be routed to. This is a good time to prompt users to add your node as a peer, or open a channel.                                                     |
+| **InvalidDataError**       | Thrown by providers if some data passed by the application is incorrect, such as a malformed BOLT-11 payment request.                                                                         |
+| **InternalError**          | A catch-all for errors that happened in the provider that the app can't really do anything about.                                                                                             |
