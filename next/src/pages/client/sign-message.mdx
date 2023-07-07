@@ -1,0 +1,24 @@
+import { SignMessageDemo } from "../../components/SignMessageDemo";
+
+# `webln.signMessage`
+
+Request that the user sign an arbitrary string message. Returns a both the signed message and the original raw message. In case a provider does any type of manipulation to the original raw message, it's recommended you use the signed message that comes back from the call rather than the originally passed one.
+
+Signed messages can either be verified server-side using the LND RPC method, or by clients with [webln.verifyMessage](/api/verify-message).
+
+### Parameters
+
+```ts
+function signMessage(message: string): Promise<SignMessageResponse>;
+```
+
+### Response
+
+```ts
+interface SignMessageResponse {
+  message: string;
+  signature: string;
+}
+```
+
+<SignMessageDemo />
