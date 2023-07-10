@@ -104,8 +104,12 @@ const Root = styled.div`
     border-radius: 4px;
   }
 
-  .remark-highlight pre {
-    border: 1px solid var(--chakra-colors-chakra-border-color);
-    border-radius: 4px;
+  .remark-highlight {
+    margin-bottom: 1rem;
+
+    pre {
+      border: 1px solid var(--chakra-colors-chakra-border-color);
+      border-radius: 4px;
+    }
   }
 `;

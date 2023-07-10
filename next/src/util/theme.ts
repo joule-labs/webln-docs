@@ -92,7 +92,7 @@ export const theme = extendTheme(
       global: {
         html: {
           textRendering: "auto",
-          "-webkit-font-smoothing": "auto",
+          WebkitFontSmoothing: "auto",
         },
         body: {
           bg: "white",

@@ -7,23 +7,40 @@ import { theme } from "@/util/theme";
 import { Navigation } from "@/components/Navigation";
 import { Markdown } from "@/components/Markdown";
 import "@/style/prism.css";
+import Head from "next/head";
+import { pages } from "@/util/pages";
+import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }: AppProps) {
+  const { pathname } = useRouter();
+  const page = pages.find((p) => p.path === pathname);
+  console.log({ page });
+
   return (
-    <ChakraProvider theme={theme}>
-      <Root>
-        <MobileHeader />
-        <Sidebar>
-          <SideMenu />
-        </Sidebar>
-        <Content>
-          <Markdown>
-            <Component {...pageProps} />
-          </Markdown>
-          <Navigation />
-        </Content>
-      </Root>
-    </ChakraProvider>
+    <>
+      {page && (
+        <Head>
+          <title>{page.name} - WebLN</title>
+          <meta name="description" content={page.description} />
+          <meta name="og:title" content={`${page.name} - WebLN`} />
+          <meta name="og:description" content={page.description} />
+        </Head>
+      )}
+      <ChakraProvider theme={theme}>
+        <Root>
+          <MobileHeader />
+          <Sidebar>
+            <SideMenu />
+          </Sidebar>
+          <Content>
+            <Markdown>
+              <Component {...pageProps} />
+            </Markdown>
+            <Navigation />
+          </Content>
+        </Root>
+      </ChakraProvider>
+    </>
   );
 }
 
@@ -56,5 +73,5 @@ const Sidebar = styled.div`
 const Content = styled.div`
   padding: 1rem 2rem 3rem;
   width: 100%;
-  max-width: 1280px;
+  max-width: 940px;
 `;
