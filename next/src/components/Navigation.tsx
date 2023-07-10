@@ -2,7 +2,7 @@ import React from "react";
 import { Icon, Button } from "@chakra-ui/react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
-import { pages } from "../util/menu";
+import { pages } from "../util/pages";
 import { useRouter } from "next/router";
 import styled from "@emotion/styled";
 

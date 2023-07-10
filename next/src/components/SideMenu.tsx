@@ -1,12 +1,11 @@
 import React from "react";
 import { Link as ChakraLink, useColorMode } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { pages, sections } from "../util/menu";
+import { pages, sections } from "../util/pages";
 import { VERSION } from "../util/constants";
 import { useRouter } from "next/router";
 import styled from "@emotion/styled";
 import { theme } from "@/util/theme";
-// import "./SideMenu.less";
 
 const sectionsWithPages = sections.map((s) => ({
   ...s,
