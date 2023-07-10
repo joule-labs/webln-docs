@@ -43,7 +43,7 @@ export const pages: Array<Page> = [
   {
     path: "/client/request-provider",
     name: "requestProvider",
-    section: "api",
+    section: "client",
   },
   {
     path: "/client/get-info",

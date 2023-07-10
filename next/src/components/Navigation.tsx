@@ -3,8 +3,8 @@ import { Icon, Button } from "@chakra-ui/react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 import { pages } from "../util/menu";
-import "./Navigation.less";
 import { useRouter } from "next/router";
+import styled from "@emotion/styled";
 
 export const Navigation: React.FC = () => {
   const { pathname } = useRouter();
@@ -13,27 +13,60 @@ export const Navigation: React.FC = () => {
   const prevPage = pages[pages.indexOf(currentPage) - 1];
 
   return (
-    <div className="Navigation">
-      <div className="Navigation-link is-prev">
+    <Root>
+      <NavLink isPrev>
         {prevPage && (
           <Link href={prevPage.path}>
-            <Button variant="ghost" size="lg">
-              <Icon as={FaArrowLeft} />
+            <Button
+              variant="outline"
+              size="lg"
+              leftIcon={<Icon as={FaArrowLeft} />}
+            >
               Previous
             </Button>
           </Link>
         )}
-      </div>
-      <div className="Navigation-link is-next">
+      </NavLink>
+      <NavLink isNext>
         {nextPage && (
           <Link href={nextPage.path}>
-            <Button variant="ghost" size="lg">
+            <Button
+              variant="outline"
+              size="lg"
+              rightIcon={<Icon as={FaArrowRight} />}
+            >
               Next
-              <Icon as={FaArrowRight} />
             </Button>
           </Link>
         )}
-      </div>
-    </div>
+      </NavLink>
+    </Root>
   );
 };
+
+const Root = styled.div`
+  padding-top: 3rem;
+  display: flex;
+`;
+
+const NavLink = styled.div<{ isNext?: boolean; isPrev?: boolean }>`
+  flex: 1;
+  ${(props) => `text-align: ${props.isNext ? "right" : "left"};`}
+`;
+
+// .Navigation {
+//   padding-top: 3rem;
+//   display: flex;
+
+//   &-link {
+//     flex: 1;
+
+//     &.is-prev {
+//       text-align: left;
+//     }
+
+//     &.is-next {
+//       text-align: right;
+//     }
+//   }
+// }

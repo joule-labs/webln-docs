@@ -5,12 +5,12 @@ import {
   Textarea,
   Flex,
   Button,
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
+  Box,
 } from "@chakra-ui/react";
 import { requestProvider, SignMessageResponse } from "webln";
+import { Alert } from "./Alert";
+import styled from "@emotion/styled";
+import { DemoContainer } from "./DemoContainer";
 
 export const SignMessageDemo = () => {
   const [message, setMessage] = useState<string>("WebLN is the bee's knees");
@@ -40,36 +40,48 @@ export const SignMessageDemo = () => {
   };
 
   return (
-    <form>
-      <Flex gap={20}>
-        <div>
-          <FormControl>
-            <FormLabel>Message</FormLabel>
-            <Textarea rows={5} value={message} onChange={handleChangeMessage} />
-          </FormControl>
-        </div>
-        <div>
-          <FormControl>
-            <FormLabel>Signature</FormLabel>
-            <Textarea rows={5} disabled value={sig ? sig.signature : ""} />
-          </FormControl>
-        </div>
-      </Flex>
-      {error && (
-        <Alert status="error" style={{ marginBottom: "1rem" }}>
-          <AlertIcon />
-          <AlertTitle>An error occured</AlertTitle>
-          <AlertDescription>{error.toString()}</AlertDescription>
-        </Alert>
-      )}
-      <Button
-        size="lg"
-        isLoading={isLoading}
-        onClick={signMessage}
-        width="100%"
-      >
-        Sign message
-      </Button>
-    </form>
+    <DemoContainer componentFileName="SignMessageDemo.tsx">
+      <Form>
+        <Flex gap={4}>
+          <Box flex={1}>
+            <FormControl>
+              <FormLabel>Message</FormLabel>
+              <Textarea
+                rows={5}
+                value={message}
+                onChange={handleChangeMessage}
+              />
+            </FormControl>
+          </Box>
+          <Box flex={1}>
+            <FormControl>
+              <FormLabel>Signature</FormLabel>
+              <Textarea rows={5} isDisabled value={sig ? sig.signature : ""} />
+            </FormControl>
+          </Box>
+        </Flex>
+        {error && (
+          <Alert
+            status="error"
+            title="An error occured"
+            description={error.toString()}
+          />
+        )}
+        <Button
+          size="lg"
+          isLoading={isLoading}
+          onClick={signMessage}
+          width="100%"
+        >
+          Sign message
+        </Button>
+      </Form>
+    </DemoContainer>
   );
 };
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
