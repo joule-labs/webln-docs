@@ -5,12 +5,12 @@ import {
   Textarea,
   Flex,
   Button,
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
+  Box,
 } from "@chakra-ui/react";
 import { requestProvider } from "webln";
+import styled from "@emotion/styled";
+import { Alert } from "./Alert";
+import { DemoContainer } from "./DemoContainer";
 
 export const VerifyMessageDemo: React.FC = () => {
   const [message, setMessage] = useState("WebLN is the bee's knees");
@@ -33,47 +33,54 @@ export const VerifyMessageDemo: React.FC = () => {
   };
 
   return (
-    <form>
-      <Flex gap={20}>
-        <div>
-          <FormControl>
-            <FormLabel>Signature</FormLabel>
-            <Textarea
-              name="message"
-              rows={5}
-              value={message}
-              onChange={(ev) => setMessage(ev.currentTarget.value)}
-            />
-          </FormControl>
-        </div>
-
-        <div>
-          <FormControl>
-            <FormLabel>Signature</FormLabel>
-            <Textarea
-              name="signature"
-              rows={5}
-              value={signature}
-              onChange={(ev) => setSignature(ev.currentTarget.value)}
-            />
-          </FormControl>
-        </div>
-      </Flex>
-      {error && (
-        <Alert status="error" style={{ marginBottom: "1rem" }}>
-          <AlertIcon />
-          <AlertTitle>An error occured</AlertTitle>
-          <AlertDescription>{error.toString()}</AlertDescription>
-        </Alert>
-      )}
-      <Button
-        size="lg"
-        isLoading={isLoading}
-        onClick={verifyMessage}
-        width="100%"
-      >
-        Verify message
-      </Button>
-    </form>
+    <DemoContainer componentFileName="VerifyMessageDemo.tsx">
+      <Form>
+        <Flex gap={4}>
+          <Box flex={1}>
+            <FormControl>
+              <FormLabel>Signature</FormLabel>
+              <Textarea
+                name="message"
+                rows={5}
+                value={message}
+                onChange={(ev) => setMessage(ev.currentTarget.value)}
+              />
+            </FormControl>
+          </Box>
+          <Box flex={1}>
+            <FormControl>
+              <FormLabel>Signature</FormLabel>
+              <Textarea
+                name="signature"
+                rows={5}
+                value={signature}
+                onChange={(ev) => setSignature(ev.currentTarget.value)}
+              />
+            </FormControl>
+          </Box>
+        </Flex>
+        {error && (
+          <Alert
+            status="error"
+            title="An error occured"
+            description={error.toString()}
+          />
+        )}
+        <Button
+          size="lg"
+          isLoading={isLoading}
+          onClick={verifyMessage}
+          width="100%"
+        >
+          Verify message
+        </Button>
+      </Form>
+    </DemoContainer>
   );
 };
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;

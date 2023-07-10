@@ -1,10 +1,12 @@
-import "../style/prism.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import type { AppProps } from "next/app";
-import { MobileHeader } from "../components/MobileHeader";
-import { SideMenu } from "../components/SideMenu";
-import { theme } from "../util/theme";
+import { MobileHeader } from "@/components/MobileHeader";
+import { SideMenu } from "@/components/SideMenu";
+import { theme } from "@/util/theme";
+import { Navigation } from "@/components/Navigation";
+import { Markdown } from "@/components/Markdown";
+import "@/style/prism.css";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -15,7 +17,10 @@ export default function App({ Component, pageProps }: AppProps) {
           <SideMenu />
         </Sidebar>
         <Content>
-          <Component {...pageProps} />
+          <Markdown>
+            <Component {...pageProps} />
+          </Markdown>
+          <Navigation />
         </Content>
       </Root>
     </ChakraProvider>
@@ -23,52 +28,33 @@ export default function App({ Component, pageProps }: AppProps) {
 }
 
 const Root = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  ${theme.mq.lg} {
+    flex-direction: column;
+  }
 `;
 
 const Sidebar = styled.div`
+  position: sticky;
+  top: 0;
   height: 100vh;
-  overflow: auto;
+  height: 100dvh;
   min-width: 300px;
+  overflow: auto;
+  overscroll-behavior: contain;
+
+  ${theme.mq.lg} {
+    display: none;
+  }
 `;
 
 const Content = styled.div`
-  flex: 1;
-  height: 100vh;
-  overflow: auto;
   padding: 1rem 2rem 3rem;
+  width: 100%;
   max-width: 1280px;
 `;
-
-// .App {
-//   display: flex;
-//   justify-content: center;
-
-//   &-sidebar,
-//   &-content {
-//     height: 100vh;
-//     overflow: auto;
-//   }
-
-//   &-sidebar {
-//     min-width: 300px;
-//   }
-
-//   &-content {
-//     flex: 1;
-//     padding: 1rem 2rem 3rem;
-//     max-width: 1280px;
-//   }
-
-//   @media @md-query {
-//     &-sidebar {
-//       display: none;
-//     }
-
-//     &-content {
-//       padding-top: @mobile-header-height + 1rem;
-//       padding-bottom: 2rem;
-//     }
-//   }
-// }

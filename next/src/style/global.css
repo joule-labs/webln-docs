@@ -1,0 +1,49 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+}
+
+h2 {
+  margin-top: 2rem;
+}
+
+h3 {
+  margin-top: 1.5rem;
+}
+
+h4 {
+  margin-top: 1rem;
+}
+
+h5 {
+  margin-top: 0.5rem;
+}
+
+ul li {
+  padding-bottom: 0.5rem;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+p code,
+li code {
+  font-size: 0.9rem;
+  padding: 0.2rem 0.4rem;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #dd4a68;
+  border-radius: 2px;
+}
