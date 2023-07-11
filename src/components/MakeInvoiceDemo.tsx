@@ -265,7 +265,7 @@ const PaymentRequestTable: React.FC<PRTableProps> = ({ paymentRequest }) => {
       key: "Expires",
       value: decoded.timestamp
         ? `${new Date(
-            (decoded.timestamp + expiry) * 1000
+            (decoded.timestamp + expiry) * 1000,
           ).toLocaleString()} (${expiry} seconds)`
         : `${expiry} seconds`,
     },

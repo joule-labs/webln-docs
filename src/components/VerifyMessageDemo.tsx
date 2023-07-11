@@ -15,7 +15,7 @@ import { DemoContainer } from "./DemoContainer";
 export const VerifyMessageDemo: React.FC = () => {
   const [message, setMessage] = useState("WebLN is the bee's knees");
   const [signature, setSignature] = useState(
-    "rbpr1o6qfqtgrsqmnhgsq7tkch9aet5ze7wstxqjo87zqybg38tzy3pmiwi36c5mcqnnep179dhjziog5jsam41ce7hdaf4dmjfhiys9"
+    "rbpr1o6qfqtgrsqmnhgsq7tkch9aet5ze7wstxqjo87zqybg38tzy3pmiwi36c5mcqnnep179dhjziog5jsam41ce7hdaf4dmjfhiys9",
   );
   const [error, setError] = useState<Error>();
   const [isLoading, setIsLoading] = useState(false);

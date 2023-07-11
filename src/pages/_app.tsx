@@ -6,23 +6,39 @@ import { SideMenu } from "@/components/SideMenu";
 import { theme } from "@/util/theme";
 import { Navigation } from "@/components/Navigation";
 import { Markdown } from "@/components/Markdown";
-import "@/style/prism.css";
 import Head from "next/head";
 import { pages } from "@/util/pages";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import "@/style/prism.css";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const { pathname } = useRouter();
+  const { pathname, replace } = useRouter();
   const page = pages.find((p) => p.path === pathname);
-  console.log({ page });
+
+  // The old docs site used a hash router, so we need to redirect
+  // now that it's a path router.
+  useEffect(() => {
+    if (pathname !== "/") return;
+    const hash = window.location.hash
+      .replace("#", "")
+      .replace("/api", "/client");
+    const hashPage = pages.find((p) => p.path === hash);
+    if (hashPage) {
+      replace(hashPage.path);
+    }
+  }, [pathname, replace]);
 
   return (
     <>
       {page && (
         <Head>
-          <title>{page.name} - WebLN</title>
+          <title>{page.name} - WebLN Documentation</title>
           <meta name="description" content={page.description} />
-          <meta name="og:title" content={`${page.name} - WebLN`} />
+          <meta
+            name="og:title"
+            content={`${page.name} - WebLN Documentation`}
+          />
           <meta name="og:description" content={page.description} />
         </Head>
       )}

@@ -17,7 +17,7 @@ const mq = Object.entries(breakpoints).reduce(
     prev[size as keyof typeof breakpoints] = `@media (max-width: ${width}px)`;
     return prev;
   },
-  {} as Record<keyof typeof breakpoints, string>
+  {} as Record<keyof typeof breakpoints, string>,
 );
 
 export const theme = extendTheme(
@@ -117,5 +117,5 @@ export const theme = extendTheme(
         },
       },
     },
-  }
+  },
 );
