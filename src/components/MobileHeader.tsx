@@ -71,6 +71,7 @@ const Root = styled.div`
   padding: 0 1rem;
   background: var(--chakra-colors-chakra-body-bg);
   box-shadow: 0 1px var(--chakra-colors-chakra-border-color);
+  z-index: 1000;
 
   ${theme.mq.lg} {
     display: flex;
