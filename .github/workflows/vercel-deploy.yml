@@ -8,7 +8,7 @@ on:
       - master
 jobs:
   Deploy-Production:
-    runs-on: ubunt-latest
+    runs-on: ubuntu-latest
     environment:
       name: Production
       url: ${{steps.deploy.outputs.url}}
