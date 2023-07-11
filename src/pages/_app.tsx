@@ -88,6 +88,7 @@ const Sidebar = styled.div`
 
 const Content = styled.div`
   padding: 1rem 2rem 3rem;
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   max-width: 940px;
 `;
