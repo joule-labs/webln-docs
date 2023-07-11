@@ -1,61 +1,95 @@
-import React from 'react';
-import { Icon, Drawer } from 'antd';
-import { RouteComponentProps, withRouter, Route } from 'react-router';
-import { VERSION } from '../constants';
-import SideMenu from './SideMenu';
-import './MobileHeader.less';
+import React, { useCallback, useEffect, useState } from "react";
+import {
+  IconButton,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+} from "@chakra-ui/react";
+import { VERSION } from "../util/constants";
+import { SideMenu } from "./SideMenu";
+import { useRouter } from "next/router";
+import styled from "@emotion/styled";
+import { AiOutlineMenuUnfold } from "react-icons/ai";
+import { theme } from "@/util/theme";
 
-interface State {
-  isDrawerOpen: boolean;
-}
+export const MobileHeader: React.FC = () => {
+  const { pathname } = useRouter();
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-class MobileHeader extends React.Component<RouteComponentProps, State> {
-  state: State = {
-    isDrawerOpen: false,
-  };
+  const openDrawer = useCallback(() => setIsDrawerOpen(true), []);
+  const closeDrawer = useCallback(() => setIsDrawerOpen(false), []);
 
-  componentDidMount() {
-    window.addEventListener('resize', this.closeDrawer);
-  }
+  // Close drawer on resize
+  useEffect(() => {
+    window.addEventListener("resize", closeDrawer);
+    return () => {
+      window.removeEventListener("resize", closeDrawer);
+    };
+  }, [closeDrawer]);
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.closeDrawer);
-  }
+  // Close drawer on navigate
+  useEffect(() => {
+    closeDrawer();
+  }, [pathname, closeDrawer]);
 
-  componentDidUpdate(prevProps: RouteComponentProps) {
-    if (this.props.location.pathname !== prevProps.location.pathname) {
-      this.closeDrawer();
-    }
-  }
-
-  render() {
-    const { isDrawerOpen } = this.state;
-    console.log(this.props.location);
-
-    return (
-      <div className="MobileHeader">
-        <Icon className="MobileHeader-open" type="menu-unfold" onClick={this.openDrawer} />
-        <div className="MobileHeader-title">
-          WebLN
-          <div className="MobileHeader-title-version">
-            v{VERSION}
-          </div>
-        </div>
-        <Drawer
-          className="MobileHeader-drawer"
-          visible={isDrawerOpen}
-          onClose={this.closeDrawer}
-          placement="left"
-          width="90%"
-        >
+  return (
+    <Root>
+      <OpenButton
+        variant="ghost"
+        onClick={openDrawer}
+        icon={<AiOutlineMenuUnfold />}
+        aria-label="Open menu"
+        colorScheme="gray"
+      />
+      <Title>
+        WebLN
+        <Version>v{VERSION}</Version>
+      </Title>
+      <Drawer
+        isOpen={isDrawerOpen}
+        onClose={closeDrawer}
+        placement="left"
+        size="sm"
+      >
+        <DrawerOverlay />
+        <DrawerContent>
           <SideMenu />
-        </Drawer>
-      </div>
-    );
+        </DrawerContent>
+      </Drawer>
+    </Root>
+  );
+};
+
+const Root = styled.div`
+  display: none;
+  position: sticky;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3.6rem;
+  padding: 0 1rem;
+  background: var(--chakra-colors-chakra-body-bg);
+  box-shadow: 0 1px var(--chakra-colors-chakra-border-color);
+
+  ${theme.mq.lg} {
+    display: flex;
   }
+`;
 
-  private openDrawer = () => this.setState({ isDrawerOpen: true });
-  private closeDrawer = () => this.setState({ isDrawerOpen: false });
-}
+const OpenButton = styled(IconButton)`
+  margin-right: 0.5rem;
+`;
 
-export default withRouter(MobileHeader);
+const Title = styled.div`
+  display: flex;
+  font-size: 1.6rem;
+  line-height: 1;
+  align-items: flex-end;
+`;
+
+const Version = styled.div`
+  padding-left: 8px;
+  padding-bottom: 2px;
+  font-size: 0.7rem;
+`;

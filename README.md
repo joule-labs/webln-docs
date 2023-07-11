@@ -1,40 +1,20 @@
 # WebLN Docs
 
-This houses the documentation for [WebLN](https://github.com/wbobeirne/webln), a spec for Lightning web apps to interface with Lightning clients. This site is a custom simple React app, hosted using Github  Pages.
+This houses the documentation for [WebLN](https://github.com/wbobeirne/webln), a spec for Lightning web apps to interface with Lightning clients.
 
 ## Requirements
 
-* Node 8+
-* NPM 5+ or Yarn 1+
-
-### Install Dependencies
-
-```sh
-npm install
-# OR #
-yarn
-```
+- Node 16+
+- Yarn 1
 
 ### Run in Development
 
 ```sh
-npm run dev
-# OR #
-yarn dev
+yarn && yarn dev
 ```
 
 ### Build for Production
 
 ```sh
-npm run build
-# OR #
-yarn build
-```
-
-### Deploy to GitHub Pages
-
-```sh
-npm run deploy
-# OR #
-yarn deploy
+yarn && yarn build
 ```

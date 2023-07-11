@@ -1,86 +1,84 @@
-import React from 'react';
-import { Form, Input, Icon, Button, Alert } from 'antd';
-import { requestProvider, GetInfoResponse } from 'webln';
+import React, { useState } from "react";
+import { FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
+import { requestProvider, GetInfoResponse } from "webln";
+import { Alert } from "./Alert";
+import { DemoContainer } from "./DemoContainer";
+import styled from "@emotion/styled";
 
-interface State {
-  info: GetInfoResponse | null;
-  error: Error | null;
-  isLoading: boolean;
-};
+export const GetInfoDemo: React.FC = () => {
+  const [info, setInfo] = useState<GetInfoResponse>();
+  const [error, setError] = useState<Error>();
+  const [isLoading, setIsLoading] = useState(false);
 
-export default class GetInfoDemo extends React.Component<{}, State> {
-  state: State = {
-    info: null,
-    error: null,
-    isLoading: false,
+  const handleGetInfo = async (ev: React.FormEvent) => {
+    ev.preventDefault();
+    setInfo(undefined);
+    setError(undefined);
+
+    setIsLoading(true);
+    try {
+      const webln = await requestProvider();
+      const info = await webln.getInfo();
+      setInfo(info);
+    } catch (error) {
+      setError(error as Error);
+    }
+    setIsLoading(false);
   };
 
-  render() {
-    const { info, error, isLoading } = this.state;
-
-    return (
-      <Form layout="vertical">
-        <Form.Item label="Pubkey">
-          <Input disabled value={info ? info.node.pubkey : ''} />
-        </Form.Item>
-        <Form.Item label="Alias">
-          <Input disabled value={info ? info.node.alias : ''} />
-        </Form.Item>
-        <Form.Item label="Color">
+  return (
+    <DemoContainer componentFileName="GetInfoDemo.tsx">
+      <Form onSubmit={handleGetInfo}>
+        <FormControl>
+          <FormLabel>Pubkey</FormLabel>
+          <Input isDisabled value={info ? info.node.pubkey : ""} />
+        </FormControl>
+        <FormControl>
+          <FormLabel>Alias</FormLabel>
+          <Input isDisabled value={info ? info.node.alias : ""} />
+        </FormControl>
+        <FormControl>
+          <FormLabel>Color</FormLabel>
           <Input
-            disabled
-            value={info ? info.node.color : ''}
-            addonBefore={info && info.node.color && (
-              <div style={{
-                height: '1rem',
-                width: '1rem',
-                borderRadius: '100%',
-                background: info.node.color,
-              }}/>
-            )}
+            isDisabled
+            value={info ? info.node.color : ""}
+            // addonBefore={
+            //   info &&
+            //   info.node.color && (
+            //     <div
+            //       style={{
+            //         height: "1rem",
+            //         width: "1rem",
+            //         borderRadius: "100%",
+            //         background: info.node.color,
+            //       }}
+            //     />
+            //   )
+            // }
           />
-        </Form.Item>
-        {error && 
+        </FormControl>
+        {error && (
           <Alert
-            type="error"
-            message="An error occured"
+            status="error"
+            title="An error occured"
             description={error.toString()}
-            style={{ marginBottom: '1rem' }}
-            showIcon
           />
-        }
+        )}
         <Button
-          size="large"
-          type="primary"
-          loading={isLoading}
-          onClick={this.getInfo}
-          block
+          size="lg"
+          isLoading={isLoading}
+          onClick={handleGetInfo}
+          width="100%"
         >
           Run webln.getInfo
         </Button>
       </Form>
-    )
-  }
+    </DemoContainer>
+  );
+};
 
-  private getInfo = async () => {
-    this.setState({
-      error: null,
-      info: null,
-      isLoading: true,
-    });
-
-    try {
-      const webln = await requestProvider();
-      const info = await webln.getInfo();
-      this.setState({
-        info,
-        isLoading: false,
-      });
-    } catch(error) {
-      this.setState({
-        error,
-        isLoading: false,
-      });
-    }
-  };
-}
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
