@@ -29,15 +29,15 @@ export const theme = extendTheme(
     colors: {
       primary: {
         50: "#fff9f0",
-        100: "#ffe7ba",
-        200: "#ffd591",
-        300: "#ffc069",
-        400: "#ffa940",
-        500: "#fa8c16",
-        600: "#d46b08",
-        700: "#ad4e00",
-        800: "#873800",
-        900: "#612500",
+        100: "#ffeac9",
+        200: "#ffd6a1",
+        300: "#ffc078",
+        400: "#f29f4b",
+        500: "#e67e22",
+        600: "#bf5e13",
+        700: "#994208",
+        800: "#732a00",
+        900: "#4d1900",
       },
     },
     fonts: {
@@ -84,6 +84,19 @@ export const theme = extendTheme(
           sm: {
             fontSize: "1.1rem",
             lineHeight: "1.5",
+          },
+        },
+      },
+      FormLabel: {
+        baseStyle: {
+          textTransform: "uppercase",
+          fontWeight: "bold",
+          fontSize: "0.7rem",
+          marginBottom: "0.25rem",
+          letterSpacing: "0.025rem",
+          color: defaultTheme.colors.blackAlpha[700],
+          _dark: {
+            color: defaultTheme.colors.whiteAlpha[700],
           },
         },
       },
