@@ -33,7 +33,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       {page && (
         <Head>
-          <title>{page.name} - WebLN Documentation</title>
+          <title>{`${page.name} - WebLN Documentation`}</title>
           <meta name="description" content={page.description} />
           <meta
             name="og:title"
