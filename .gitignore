@@ -3,3 +3,4 @@ dist
 *.log
 .next
 .DS_Store
+.vscode
