@@ -12,10 +12,10 @@ export const sections: Array<Section> = [
     id: "client",
     name: "Client API Reference",
   },
-  {
-    id: "provider",
-    name: "Provider Reference",
-  },
+  // {
+  //   id: "provider",
+  //   name: "Provider Reference",
+  // },
 ];
 
 export interface Page {
