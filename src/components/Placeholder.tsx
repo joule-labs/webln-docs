@@ -1,18 +1,24 @@
-import React from 'react';
-import { Icon } from 'antd';
-import './Placeholder.less';
+import React from "react";
+import { Icon } from "@chakra-ui/react";
+import { FaFrown } from "react-icons/fa";
+import styled from "@emotion/styled";
 
 interface Props {
   children: React.ReactNode;
 }
 
-const Placeholder: React.SFC<Props> = ({ children }) => (
-  <div className="Placeholder">
-    <Icon type="frown" />
-    <div className="Placeholder-content">
-      {children}
-    </div>
-  </div>
+export const Placeholder: React.FC<Props> = ({ children }) => (
+  <Root>
+    <Icon as={FaFrown} />
+    <div>{children}</div>
+  </Root>
 );
 
-export default Placeholder;
+const Root = styled.div`
+  margin: 2rem 0 0;
+  padding: 3rem 2rem;
+  border: 2px dashed var(--chakra-colors-dividerLight);
+  color: var(--chakra-colors-chakra-subtle-text);
+  border-radius: 8px;
+  text-align: center;
+`;

@@ -1,84 +1,86 @@
-import React from 'react';
-import { Form, Input, Row, Col, Button, Alert } from 'antd';
-import { requestProvider, SignMessageResponse } from 'webln';
+import React, { useState } from "react";
+import {
+  FormControl,
+  FormLabel,
+  Textarea,
+  Flex,
+  Button,
+  Box,
+} from "@chakra-ui/react";
+import { requestProvider } from "webln";
+import styled from "@emotion/styled";
+import { Alert } from "./Alert";
+import { DemoContainer } from "./DemoContainer";
 
-interface State {
-  message: string;
-  signature: string;
-  error: Error | null;
-  isLoading: boolean;
-};
+export const VerifyMessageDemo: React.FC = () => {
+  const [message, setMessage] = useState("WebLN is the bee's knees");
+  const [signature, setSignature] = useState(
+    "rbpr1o6qfqtgrsqmnhgsq7tkch9aet5ze7wstxqjo87zqybg38tzy3pmiwi36c5mcqnnep179dhjziog5jsam41ce7hdaf4dmjfhiys9"
+  );
+  const [error, setError] = useState<Error>();
+  const [isLoading, setIsLoading] = useState(false);
 
-export default class VerifyMessageDemo extends React.Component<{}, State> {
-  state: State = {
-    message: "WebLN is the bee's knees",
-    signature: 'rbpr1o6qfqtgrsqmnhgsq7tkch9aet5ze7wstxqjo87zqybg38tzy3pmiwi36c5mcqnnep179dhjziog5jsam41ce7hdaf4dmjfhiys9',
-    error: null,
-    isLoading: false,
+  const verifyMessage = async () => {
+    setError(undefined);
+    setIsLoading(true);
+    try {
+      const webln = await requestProvider();
+      await webln.verifyMessage(signature, message);
+    } catch (error) {
+      setError(error as Error);
+    }
+    setIsLoading(false);
   };
 
-  render() {
-    const { message, signature, error, isLoading } = this.state;
-
-    return (
-      <Form layout="vertical">
-        <Row gutter={20}>
-          <Col xs={24} sm={12}>
-            <Form.Item label="Message">
-              <Input.TextArea
+  return (
+    <DemoContainer componentFileName="VerifyMessageDemo.tsx">
+      <Form>
+        <Flex gap={4}>
+          <Box flex={1}>
+            <FormControl>
+              <FormLabel>Signature</FormLabel>
+              <Textarea
                 name="message"
                 rows={5}
                 value={message}
-                onChange={this.handleChange}
+                onChange={(ev) => setMessage(ev.currentTarget.value)}
               />
-            </Form.Item>
-          </Col>
-          <Col xs={24} sm={12}>
-            <Form.Item label="Signature">
-            <Input.TextArea
+            </FormControl>
+          </Box>
+          <Box flex={1}>
+            <FormControl>
+              <FormLabel>Signature</FormLabel>
+              <Textarea
                 name="signature"
                 rows={5}
                 value={signature}
-                onChange={this.handleChange}
+                onChange={(ev) => setSignature(ev.currentTarget.value)}
               />
-            </Form.Item>
-          </Col>
-        </Row>
-        {error && 
+            </FormControl>
+          </Box>
+        </Flex>
+        {error && (
           <Alert
-            type="error"
-            message="An error occured"
+            status="error"
+            title="An error occured"
             description={error.toString()}
-            style={{ marginBottom: '1rem' }}
-            showIcon
           />
-        }
+        )}
         <Button
-          size="large"
-          type="primary"
-          loading={isLoading}
-          onClick={this.verifyMessage}
-          block
+          size="lg"
+          isLoading={isLoading}
+          onClick={verifyMessage}
+          width="100%"
         >
           Verify message
         </Button>
       </Form>
-    )
-  }
+    </DemoContainer>
+  );
+};
 
-
-  private handleChange = (ev: React.ChangeEvent<HTMLTextAreaElement>) => {
-    this.setState({ [ev.target.name]: ev.target.value } as any);
-  };
-
-  private verifyMessage = async () => {
-    this.setState({ error: null });
-    try {
-      const { signature, message } = this.state;
-      const webln = await requestProvider();
-      await webln.verifyMessage(signature, message);
-    } catch(error) {
-      this.setState({ error });
-    }
-  };
-}
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
