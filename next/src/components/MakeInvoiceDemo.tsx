@@ -6,6 +6,7 @@ import {
   Textarea,
   Button,
   ButtonGroup,
+  TableContainer,
   Table,
   Thead,
   Tbody,
@@ -289,22 +290,24 @@ const PaymentRequestTable: React.FC<PRTableProps> = ({ paymentRequest }) => {
       borderRadius="4"
       marginBottom="1rem"
     >
-      <Table className="PaymentRequestTable" size="small">
-        <Thead>
-          <Tr>
-            <Th>Key</Th>
-            <Th>Value</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {data.map((row) => (
-            <Tr key={row.key}>
-              <Td>{row.key}</Td>
-              <Td>{row.value}</Td>
+      <TableContainer>
+        <Table className="PaymentRequestTable" size="small">
+          <Thead>
+            <Tr>
+              <Th>Key</Th>
+              <Th>Value</Th>
             </Tr>
-          ))}
-        </Tbody>
-      </Table>
+          </Thead>
+          <Tbody>
+            {data.map((row) => (
+              <Tr key={row.key}>
+                <Td>{row.key}</Td>
+                <Td>{row.value}</Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </TableContainer>
     </Box>
   );
 };
